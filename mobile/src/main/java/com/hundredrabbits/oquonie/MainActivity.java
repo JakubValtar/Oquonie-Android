@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
       WebView.setWebContentsDebuggingEnabled(true);
     }
 
-    webView = (WebView) findViewById(R.id.web_view);
+    webView = findViewById(R.id.web_view);
     WebSettings webSettings = webView.getSettings();
     webSettings.setJavaScriptEnabled(true);
     webSettings.setDomStorageEnabled(true);
