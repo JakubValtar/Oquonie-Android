@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     super.onResume();
     webView.onResume();
     webView.resumeTimers();
-    String js = "if (oquonie.music.is_muted == false){oquonie.music.resume_ambience();}";
+    String js = "if (typeof oquonie != 'undefined' && oquonie.music.is_muted == false){oquonie.music.resume_ambience();}";
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
       webView.evaluateJavascript(js, null);
     } else {
