@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
       webSettings.setMediaPlaybackRequiresUserGesture(false);
     }
 
+    webView.loadUrl("file:///android_asset/index.html");
   }
 
   @Override
@@ -46,13 +47,26 @@ public class MainActivity extends AppCompatActivity {
     super.onResume();
     webView.onResume();
     webView.resumeTimers();
-    webView.loadUrl("file:///android_asset/index.html");
+    String js = "if (oquonie.music.is_muted == false){oquonie.music.resume_ambience();}";
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+      webView.evaluateJavascript(js, null);
+    } else {
+      webView.loadUrl("javascript:" + js);
+    }
   }
 
   @Override
   protected void onPause() {
     super.onPause();
-    webView.loadUrl("about:blank");
+    String js = "oquonie.music.track_ambient.pause();" +
+        "oquonie.music.track_dialog.pause();" +
+        "oquonie.music.track_effect.pause();" +
+        "oquonie.music.track_interface.pause();";
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+      webView.evaluateJavascript(js, null);
+    } else {
+      webView.loadUrl("javascript:" + js);
+    }
     webView.pauseTimers();
     webView.onPause();
   }
