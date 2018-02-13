@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
       webSettings.setMediaPlaybackRequiresUserGesture(false);
     }
 
-    webView.loadUrl("file:///android_asset/index.html");
+    webView.loadUrl("file:///android_asset/Oquonie/index.html");
   }
 
   @Override
